@@ -1,11 +1,9 @@
 import App from "next/app";
 import Head from "next/head";
 import React from "react";
-import AppLayout from "components/AppLayout";
 import { config, Provider } from "../styles";
 import { createCss, TCss } from "@stitches/css";
 import { createOvermind, createOvermindSSR, rehydrate } from "overmind";
-//import "../styles/custom.scss";
 import * as overmindReact from "overmind-react";
 import * as overmindStore from "store";
 
@@ -48,7 +46,7 @@ export default class MyApp extends App<{
       <overmindReact.Provider value={this.overmind}>
         <Provider css={serverCss || createCss(config)}>
           <Head>
-            <title>The website title</title>
+            <title>Leclerc - Inventaire</title>
 
             <link
               href="https://unpkg.com/tailwindcss/dist/base.min.css"
@@ -59,14 +57,14 @@ export default class MyApp extends App<{
             <meta charSet="utf-8" />
             <meta
               name="description"
-              content="This is a template for NextJS + Stitches + Overmind + Typescript"
+              content="Leclerc - Outil facilitant les opérations d'invenataire annuel"
             />
             <meta name="theme-color" content="FFFFFF" />
           </Head>
 
-          <AppLayout>
-            <Component {...pageProps} />
-          </AppLayout>
+          {/* <AppLayout> */}
+          <Component {...pageProps} />
+          {/* </AppLayout> */}
         </Provider>
       </overmindReact.Provider>
     );
