@@ -21,7 +21,12 @@ export default class MyDocument extends Document {
         styles: (
           <>
             {initialProps.styles}
-            <style>{css.getStyles()}</style>
+            {css.getStyles().map((css, index) => (
+              <style key={index}>
+                {css.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, "")}
+              </style>
+            ))}
+            {/* <style>{css.getStyles()}</style> */}
           </>
         ),
       };
