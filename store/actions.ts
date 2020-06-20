@@ -1,4 +1,6 @@
-import { AsyncAction, Action, rehydrate } from "overmind";
+import { Action, rehydrate } from "overmind";
+import { AppConfig } from "global";
+import { getConfigInCache } from "utils/cache.utils";
 
 export const changePage = ({ state }, mutations) => {
   rehydrate(state, mutations || []);
@@ -15,6 +17,19 @@ export const changePage = ({ state }, mutations) => {
   }
 };
 
-/**
- * Export AsyncAction and Action
- */
+export const updateConfig: Action<AppConfig> = (
+  { state },
+  newConfig?: AppConfig
+) => {
+  state.appConfig = newConfig;
+};
+
+export const getCachedConfig: Action = ({ state }) => {
+  const cachedConfig = getConfigInCache();
+
+  if (!cachedConfig) {
+    return;
+  }
+
+  state.appConfig = cachedConfig;
+};

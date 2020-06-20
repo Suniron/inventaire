@@ -4,4 +4,6 @@ export const state: State = {
   // NextJS:
   page: undefined,
   items: [],
+  //
+  appConfig: undefined,
 };

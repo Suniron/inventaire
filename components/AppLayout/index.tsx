@@ -25,7 +25,7 @@ const HeaderContainer = styled.header((css) =>
     css.flex(),
     css.h(12),
     css.items("center"),
-    css.bg("black"),
+    css.bg("blue-800"),
     css.justify("center"),
     css.fixed(),
     css.top(0),
@@ -33,18 +33,17 @@ const HeaderContainer = styled.header((css) =>
     css.w("full"),
     css.borderB(2),
     css.border("solid"),
-    css.border("green-600")
+    css.border("orange-500")
   )
 );
 
 const ContentContainer = styled.div((css) =>
   css.compose(
-    css.mt(16),
-    css.mb(12),
-    css.grow("default"),
+    css.mt(12),
+    css.mb(8),
     css.flex(),
+    css.flex("col"),
     css.p(2),
-    css.justify("center"),
     css.minH("full")
   )
 );
@@ -61,7 +60,7 @@ const FooterContainer = styled.footer((css) =>
     css.w("full"),
     css.borderT(2),
     css.border("solid"),
-    css.border("green-600")
+    css.border("orange-500")
   )
 );
 

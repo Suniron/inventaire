@@ -12,7 +12,7 @@ import { createTokens, hotReloadingCache } from "@stitches/css";
 
 const tokens = createTokens({
   colors: {
-    MY_CUSTOM_COLOR_1: "#E2E8F0",
+    PRIMARY: "#1461b5",
   },
 });
 
