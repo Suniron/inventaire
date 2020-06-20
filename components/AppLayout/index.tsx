@@ -43,6 +43,7 @@ const ContentContainer = styled.div((css) =>
     css.mb(8),
     css.flex(),
     css.flex("col"),
+    css.items("center"),
     css.p(2),
     css.minH("full")
   )
