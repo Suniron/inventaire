@@ -6,6 +6,7 @@ import { createCss, TCss } from "@stitches/css";
 import { createOvermind, createOvermindSSR, rehydrate } from "overmind";
 import * as overmindReact from "overmind-react";
 import * as overmindStore from "store";
+import AppLayout from "components/AppLayout";
 
 export default class MyApp extends App<{
   serverCss: TCss<typeof config>;
@@ -62,9 +63,9 @@ export default class MyApp extends App<{
             <meta name="theme-color" content="FFFFFF" />
           </Head>
 
-          {/* <AppLayout> */}
-          <Component {...pageProps} />
-          {/* </AppLayout> */}
+          <AppLayout>
+            <Component {...pageProps} />
+          </AppLayout>
         </Provider>
       </overmindReact.Provider>
     );
