@@ -8,10 +8,16 @@ const SearchInput = styled.input((css) =>
   css.compose(css.text("center"), css.p(1))
 );
 
-const SearchBar: React.FC = () => {
+const SearchBar: React.FC<{ handleSearch: (value: string) => void }> = ({
+  handleSearch,
+}) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    handleSearch(event.target.value);
+  };
+
   return (
     <SearchBarDiv>
-      <SearchInput placeholder="Filtrer..." />
+      <SearchInput onChange={handleInputChange} placeholder="Filtrer..." />
     </SearchBarDiv>
   );
 };

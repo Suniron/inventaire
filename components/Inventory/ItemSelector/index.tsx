@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { styled } from "styles";
 import { PageTitle } from "components/pageElements";
 import { Category } from "global";
 import SearchBar from "../SearchBar";
 import ItemElement from "../ItemElement";
+import Item from "objects/Item";
 
 interface ItemSelectorProps {
   category: Category;
@@ -30,6 +31,12 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
   category,
   handleBack,
 }) => {
+  const [items, setItems] = useState<Array<Item>>(category.items);
+
+  const handleSearch = (value: string) => {
+    console.log(value);
+  };
+
   return (
     <>
       <BackButton onClick={handleBack}>
@@ -38,13 +45,13 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
       </BackButton>
 
       <PageTitle>
-        {category.name} ({category.items.length} produits)
+        {category.name} ({items.length} produits)
       </PageTitle>
 
-      <SearchBar />
+      <SearchBar handleSearch={handleSearch} />
 
       <ItemArea>
-        {category.items.map((item) => (
+        {items.map((item) => (
           <ItemElement key={item.name} item={item} />
         ))}
       </ItemArea>
