@@ -3,11 +3,9 @@ import { useOvermind } from "store";
 import { styled } from "styles";
 import { useRouter } from "next/dist/client/router";
 
-const CategoriesDiv = styled.div((css) =>
-  css.compose(css.flex(), css.flex("col"))
+const ButtonsDiv = styled.div((css) =>
+  css.compose(css.py(8), css.tablet.w("1/2"))
 );
-
-const ButtonsDiv = styled.div((css) => css.compose(css.py(8)));
 const CategoryButton = styled.button((css) =>
   css.compose(
     css.bg("blue-800"),
@@ -29,21 +27,19 @@ const Inventory: React.FC = () => {
   }
 
   return (
-    <CategoriesDiv>
-      <ButtonsDiv>
-        {state.appConfig.inventory.categories.map((cat) => (
-          <CategoryButton
-            key={cat.name}
-            onClick={() => {
-              router.push(`/category/[name]`, `/category/${cat.name}`);
-              // TODO: Show a loader while next page is building
-            }}
-          >
-            {cat.name}
-          </CategoryButton>
-        ))}
-      </ButtonsDiv>
-    </CategoriesDiv>
+    <ButtonsDiv>
+      {state.appConfig.inventory.categories.map((cat) => (
+        <CategoryButton
+          key={cat.name}
+          onClick={() => {
+            router.push(`/category/[name]`, `/category/${cat.name}`);
+            // TODO: Show a loader while next page is building
+          }}
+        >
+          {cat.name}
+        </CategoryButton>
+      ))}
+    </ButtonsDiv>
   );
 };
 
