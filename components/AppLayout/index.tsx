@@ -40,6 +40,7 @@ const HeaderContainer = styled.header((css) =>
 const ContentContainer = styled.div((css) =>
   css.compose(
     css.mt(12),
+    css.w("full"),
     css.mb(8),
     css.flex(),
     css.flex("col"),
