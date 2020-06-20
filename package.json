@@ -1,0 +1,39 @@
+{
+  "name": "nextjs-stitches-overmind-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "export": "next export",
+    "deploy": "yarn build && yarn export",
+    "start": "next start",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+  },
+  "dependencies": {
+    "@stitches/css": "latest",
+    "@stitches/styled": "latest",
+    "@stitches/tailwind": "latest",
+    "eslint": "latest",
+    "next": "latest",
+    "overmind": "latest",
+    "overmind-react": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-ga": "latest",
+    "sass": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "latest",
+    "@types/node-fetch": "latest",
+    "@types/react": "latest",
+    "@typescript-eslint/eslint-plugin": "latest",
+    "@typescript-eslint/parser": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-prettier": "latest",
+    "eslint-plugin-react": "latest",
+    "eslint-plugin-react-hooks": "latest",
+    "prettier": "latest",
+    "typescript": "latest"
+  }
+}
