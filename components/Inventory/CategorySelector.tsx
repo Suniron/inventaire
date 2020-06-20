@@ -8,9 +8,7 @@ interface CategorySelectorProps {
   handleSelect: (cat: Category) => void;
 }
 
-const ButtonsDiv = styled.div((css) =>
-  css.compose(css.py(8), css.tablet.w("1/2"))
-);
+const ButtonsDiv = styled.div((css) => css.compose(css.py(8)));
 const CategoryButton = styled.button((css) =>
   css.compose(
     css.bg("blue-800"),
