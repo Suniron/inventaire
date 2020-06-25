@@ -6,7 +6,7 @@ const FooterCopyright = styled.p((css) =>
 );
 
 const MaltLink = styled.a((css) =>
-  css.compose(css.text("orange-500"), css.underline())
+  css.compose(css.text("orange-500"), css.font("medium") /*, css.underline()*/)
 );
 
 const Footer: React.FC = () => {

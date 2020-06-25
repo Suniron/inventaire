@@ -30,10 +30,9 @@ const HeaderContainer = styled.header((css) =>
     css.fixed(),
     css.top(0),
     css.left(0),
-    css.w("full"),
-    css.borderB(2),
-    css.border("solid"),
-    css.border("orange-500")
+    css.w("full")
+    //css.borderB(2),
+    //css.border("orange-500")
   )
 );
 
@@ -59,10 +58,9 @@ const FooterContainer = styled.footer((css) =>
     css.fixed(),
     css.bottom(0),
     css.left(0),
-    css.w("full"),
-    css.borderT(2),
-    css.border("solid"),
-    css.border("orange-500")
+    css.w("full")
+    // css.borderT(2),
+    //css.border("orange-500")
   )
 );
 
