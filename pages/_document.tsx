@@ -1,7 +1,6 @@
 import React from "react";
 import { createCss } from "@stitches/css";
 import Document, { Html, Head, Main, NextScript } from "next/document";
-
 import { config } from "../styles";
 
 export default class MyDocument extends Document {
@@ -20,11 +19,13 @@ export default class MyDocument extends Document {
       styles: (
         <>
           {initialProps.styles}
-          {css.getStyles().map((css, index) => (
-            <style key={index}>
-              {css.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, "")}
-            </style>
-          ))}
+          {css.getStyles().map((css, index) => {
+            return (
+              <style key={index}>
+                {css.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, "")}
+              </style>
+            );
+          })}
           {/* <style>{css.getStyles()}</style> */}
         </>
       ),
