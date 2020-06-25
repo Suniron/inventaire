@@ -52,6 +52,7 @@ export default class MyApp extends App<{
             <link
               href="https://unpkg.com/tailwindcss/dist/base.min.css"
               rel="stylesheet"
+              key="tailwindcss"
             />
             <link rel="icon" href="favicon.ico" />
             <meta name="creator" content="Etienne BLANC" />
