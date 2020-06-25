@@ -58,7 +58,7 @@ export default class MyApp extends App<{
             <meta charSet="utf-8" />
             <meta
               name="description"
-              content="Leclerc - Outil facilitant les opérations d'invenataire annuel"
+              content="Leclerc - Outil facilitant les opérations d'inventaire annuel"
             />
             <meta name="theme-color" content="FFFFFF" />
           </Head>
