@@ -21,7 +21,8 @@
     "react": "latest",
     "react-dom": "latest",
     "react-ga": "latest",
-    "sass": "latest"
+    "sass": "latest",
+    "xlsx": "^0.16.2"
   },
   "devDependencies": {
     "@types/node": "latest",

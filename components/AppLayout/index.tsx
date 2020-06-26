@@ -74,7 +74,7 @@ const AppLayout = ({ children, type }: AppLayoutProps): JSX.Element => {
   return (
     <AppContainer>
       {type === "footer" ? null : (
-        <HeaderContainer>
+        <HeaderContainer >
           <Header />
         </HeaderContainer>
       )}
