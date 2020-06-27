@@ -7,6 +7,7 @@ import { createOvermind, createOvermindSSR, rehydrate } from "overmind";
 import * as overmindReact from "overmind-react";
 import * as overmindStore from "store";
 import AppLayout from "components/AppLayout";
+import "../styles/base.min.scss";
 
 export default class MyApp extends App<{
   serverCss: TCss<typeof config>;
@@ -49,11 +50,11 @@ export default class MyApp extends App<{
           <Head>
             <title>Leclerc - Inventaire</title>
 
-            <link
+            {/* <link
               href="https://unpkg.com/tailwindcss/dist/base.min.css"
               rel="stylesheet"
               key="tailwindcss"
-            />
+            /> */}
             <link rel="icon" href="favicon.ico" />
             <meta name="creator" content="Etienne BLANC" />
             <meta charSet="utf-8" />
