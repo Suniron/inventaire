@@ -34,6 +34,8 @@ const ItemArea = styled.div((css) =>
   )
 );
 
+const TdName = styled.td((css) => css.compose(css.text("left")));
+
 const ItemSelector: React.FC<ItemSelectorProps> = ({
   category,
   handleBack,
@@ -56,12 +58,29 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
       </PageTitle>
 
       <SearchBar handleSearch={handleSearch} />
-
-      <ItemArea>
+      <table>
+        <thead>
+          <tr>
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {items.map((item) => (
+            <tr key={item.name + item.genCodes[0]}>
+              <TdName>{`${item.name} (${item.year})`}</TdName>
+              <td>{item.quantity}</td>
+              <td>RIEN</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {/* <ItemArea>
         {items.map((item) => (
           <ItemElement key={item.name} item={item} />
         ))}
-      </ItemArea>
+      </ItemArea> */}
     </>
   );
 };

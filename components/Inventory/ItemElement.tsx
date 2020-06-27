@@ -19,7 +19,7 @@ const ItemDiv = styled.div((css) =>
   )
 );
 const ItemName = styled.p((css) =>
-  css.compose(css.px(1), css.text("xl"), css.font("medium"))
+  css.compose(css.px(1), css.text("sm"), css.font("medium"))
 );
 const ItemCurrentQty = styled.p((css) =>
   css.compose(css.px(1), css.text("sm"))
