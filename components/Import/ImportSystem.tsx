@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import XLSX from "xlsx";
 import Item from "objects/Item";
+import { Category } from "global";
+import CategoriesViewer from "components/CategoriesViewer";
 
 const ImportSystem: React.FC = () => {
+  const [categories, setCategories] = useState<Array<Category>>();
+
   // -- FUNCTIONS --
   const onImportChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.currentTarget.files || event.currentTarget.files.length === 0) {
@@ -32,44 +36,64 @@ const ImportSystem: React.FC = () => {
 
       // traiter les resultats:
       //console.log(jsonSheet);
-      const categories = {};
+      const categories: Array<Category> = [];
       let currentCatTitle = "";
-      let currentCatContent: Array<Item> = [];
+      let currentCatItems: Array<Item> = [];
 
-      jsonSheet.forEach((row) => {
-        if (Object.keys(row).length === 1) {
-          // Sauvegarder la catégorie précédente, si définie:
-          if (currentCatTitle !== "") {
-            Object.defineProperty(categories, currentCatTitle, {
-              value: currentCatContent,
-            });
-            // Réinitialiser le titre et le contenu de la caétgorie:
-            currentCatTitle = row[Object.keys(row)[0]];
-            currentCatContent = [];
-          }
-
-          currentCatTitle = row[Object.keys(row)[0]];
-        } else if (Object.keys(row).length > 1) {
-          currentCatContent.push(
-            // TODO: Rechercher par nom de clé:
-            new Item(
-              row[Object.keys(row)[0]],
-              0,
-              Number(row[Object.keys(row)[2]]),
-              Number(row[Object.keys(row)[1]])
-            )
-          );
+      jsonSheet.forEach((row, index) => {
+        if (index === jsonSheet.length - 1) {
+          categories.push({ name: currentCatTitle, items: currentCatItems });
         } else {
-          console.log("DEBUG ->", row);
+          if (Object.keys(row).length === 1) {
+            // Sauvegarder la catégorie précédente, si définie:
+            if (currentCatTitle !== "") {
+              categories.push({
+                name: currentCatTitle,
+                items: currentCatItems,
+              });
+
+              // Réinitialiser le titre et le contenu de la caétgorie:
+              currentCatTitle = row[Object.keys(row)[0]];
+              currentCatItems = [];
+            }
+
+            currentCatTitle = row[Object.keys(row)[0]];
+          } else if (Object.keys(row).length > 1) {
+            // récupèrer les != genCodes:
+            const genCodesRow = row[Object.keys(row)[1]];
+            let genCodes = null;
+
+            switch (typeof genCodesRow) {
+              case "number":
+                genCodes = [genCodesRow];
+                break;
+              case "string":
+                const splitted = genCodesRow.split(/\s+/);
+                if (splitted[0] !== "GENCOD") {
+                  genCodes = splitted;
+                }
+                break;
+            }
+
+            if (genCodes) {
+              currentCatItems.push(
+                // TODO: Rechercher par nom de clé:
+                new Item(
+                  row[Object.keys(row)[0]],
+                  0,
+                  Number(row[Object.keys(row)[2]]),
+                  genCodes
+                )
+              );
+            }
+          } else {
+            console.log("DEBUG ->", row);
+          }
         }
       });
 
-      console.log("Categories ->", categories);
-      console.log(
-        `Il y a ${Object(categories)} catégories et ${
-          jsonSheet.length - Object.keys(categories).length
-        } produits`
-      );
+      // Définir les catégories récupérées:
+      setCategories(categories);
     };
 
     // Lire le fichier:
@@ -79,13 +103,19 @@ const ImportSystem: React.FC = () => {
   // -- RENDER --
   return (
     <>
-      <p>Import</p>{" "}
-      <input
-        type="file"
-        id="xlsx-words"
-        accept=".xlsx"
-        onChange={onImportChange}
-      />
+      {categories ? (
+        <>
+          <p>{categories.length} catégories ont étés importées !</p>
+          <CategoriesViewer categories={categories} />
+        </>
+      ) : (
+        <input
+          type="file"
+          id="xlsx-import"
+          accept=".xlsx"
+          onChange={onImportChange}
+        />
+      )}
     </>
   );
 };
