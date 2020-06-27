@@ -12,8 +12,8 @@ const Inventory: React.FC = () => {
 
   const { state } = useOvermind();
 
-  if (!state.appConfig) {
-    return null;
+  if (!state.categories) {
+    return <p>Il n'y a pas de catégories importées</p>;
   }
 
   return (

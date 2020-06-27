@@ -1,10 +1,6 @@
 import { OnInitialize } from "overmind";
 
-export const onInitialize: OnInitialize = async ({
-  effects,
-  state,
-  actions,
-}) => {
+export const onInitialize: OnInitialize = async ({ actions }) => {
   /**
    * Use effects and other actions onInitialize
    */
@@ -14,5 +10,5 @@ export const onInitialize: OnInitialize = async ({
     return;
   }
 
-  actions.getCachedConfig();
+  actions.getCachedCategories();
 };

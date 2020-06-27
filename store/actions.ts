@@ -1,6 +1,6 @@
 import { Action, rehydrate } from "overmind";
-import { AppConfig } from "global";
-import { getConfigInCache } from "utils/cache.utils";
+import { Category } from "global";
+import { getCategoriesInCache, saveCategoriesInCache } from "utils/cache.utils";
 
 export const changePage = ({ state }, mutations) => {
   rehydrate(state, mutations || []);
@@ -17,19 +17,29 @@ export const changePage = ({ state }, mutations) => {
   }
 };
 
-export const updateConfig: Action<AppConfig> = (
-  { state },
-  newConfig?: AppConfig
-) => {
-  state.appConfig = newConfig;
-};
+// export const updateConfig: Action<AppConfig> = (
+//   { state },
+//   newConfig?: AppConfig
+// ) => {
+//   state.appConfig = newConfig;
+// };
 
-export const getCachedConfig: Action = ({ state }) => {
-  const cachedConfig = getConfigInCache();
+export const updateCategories: Action<Array<Category>> = (
+  { state },
+  newCategories: Array<Category>
+) => {
+  // Update in cache:
+  saveCategoriesInCache(newCategories);
+
+  // Update in state:
+  state.categories = newCategories;
+};
+export const getCachedCategories: Action = ({ state }) => {
+  const cachedConfig = getCategoriesInCache();
 
   if (!cachedConfig) {
     return;
   }
 
-  state.appConfig = cachedConfig;
+  state.categories = cachedConfig;
 };

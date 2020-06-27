@@ -5,5 +5,5 @@ export const state: State = {
   page: undefined,
   items: [],
   //
-  appConfig: undefined,
+  categories: undefined,
 };

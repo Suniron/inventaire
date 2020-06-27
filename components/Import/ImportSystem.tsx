@@ -3,9 +3,13 @@ import XLSX from "xlsx";
 import Item from "objects/Item";
 import { Category } from "global";
 import CategoriesViewer from "components/CategoriesViewer";
+import { Title, Description } from "components/Text";
+import { SimpleButton } from "components/Buttons";
+import { useOvermind } from "store";
 
 const ImportSystem: React.FC = () => {
   const [categories, setCategories] = useState<Array<Category>>();
+  const { actions } = useOvermind();
 
   // -- FUNCTIONS --
   const onImportChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,12 +104,26 @@ const ImportSystem: React.FC = () => {
     reader.readAsBinaryString(file);
   };
 
+  const handleSubmit = () => {
+    if (
+      window.confirm("Etes vous sûr de vouloir supprimer le modèle éxistant ?")
+    ) {
+      actions.updateCategories(categories);
+    }
+  };
+
   // -- RENDER --
   return (
     <>
+      <Title>Importation d'un modèle</Title>
+      <Description>
+        L'importation d'un nouveau modèle entrainera la suppression du modèle
+        éxistant.
+      </Description>
       {categories ? (
         <>
-          <p>{categories.length} catégories ont étés importées !</p>
+          <h3>{categories.length} catégories ont étés importées !</h3>
+          <SimpleButton onClick={handleSubmit}>Finaliser l'import</SimpleButton>
           <CategoriesViewer categories={categories} />
         </>
       ) : (

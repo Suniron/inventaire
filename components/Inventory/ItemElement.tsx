@@ -41,7 +41,9 @@ const ItemQtyValid = styled.button((css) => css.compose(css.w(8), css.p(1)));
 const ItemElement: React.FC<ItemProps> = ({ item }) => {
   return (
     <ItemDiv style={{ placeContent: "space-between" }}>
-      <ItemName>{item.name}</ItemName>
+      <ItemName>
+        {item.name} ({item.year})
+      </ItemName>
       <ItemCurrentQty>(quantité: {item.quantity})</ItemCurrentQty>
       <ItemQtyDiv>
         <ItemQtyChooserDiv>

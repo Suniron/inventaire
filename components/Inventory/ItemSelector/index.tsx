@@ -12,7 +12,14 @@ interface ItemSelectorProps {
 }
 
 const BackButton = styled.button((css) =>
-  css.compose(css.bg("blue-800"), css.flex(), css.p(1))
+  css.compose(
+    css.bg("blue-800"),
+    css.flex(),
+    css.p(2),
+    css.rounded("md"),
+    css.items("center"),
+    css.text("xl")
+  )
 );
 const ButtonTxt = styled.p((css) => css.compose(css.px(2), css.text("white")));
 const ButtonSvg = styled.img((css) => css.compose(css.w(6)));

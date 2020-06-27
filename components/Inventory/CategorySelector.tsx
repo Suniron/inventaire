@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { styled } from "styles";
 import { PageTitle } from "components/pageElements";
 import { useOvermind } from "store";
@@ -26,11 +26,15 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({
 }) => {
   const { state } = useOvermind();
 
+  useEffect(() => {
+    console.log(state.categories);
+  }, [state.categories]);
+
   return (
     <>
       <PageTitle>Choisissez une catégorie</PageTitle>
       <ButtonsDiv>
-        {state.appConfig.inventory.categories.map((cat) => (
+        {state.categories.map((cat) => (
           <CategoryButton
             key={cat.name}
             onClick={() => {
