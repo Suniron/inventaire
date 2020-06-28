@@ -1,12 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { styled } from "styles";
 import { PageTitle } from "components/pageElements";
 import { useOvermind } from "store";
+import { useRouter } from "next/dist/client/router";
 import { Category } from "global";
-
-interface CategorySelectorProps {
-  handleSelect: (cat: Category) => void;
-}
 
 const ButtonsDiv = styled.div((css) => css.compose(/*css.py(8)*/));
 const CategoryButton = styled.button((css) =>
@@ -21,29 +18,37 @@ const CategoryButton = styled.button((css) =>
   )
 );
 
-const CategorySelector: React.FC<CategorySelectorProps> = ({
-  handleSelect,
-}) => {
+const CategorySelector: React.FC = () => {
+  const [categories, setCategories] = useState<Array<Category>>();
   const { state } = useOvermind();
+  const router = useRouter();
 
   useEffect(() => {
-    console.log(state.categories);
-  }, [state.categories]);
+    if (!state.categories) return;
+    setCategories(state.categories);
+  }, [setCategories, state.categories]);
 
   return (
     <>
       <PageTitle>Choisissez une catégorie</PageTitle>
       <ButtonsDiv>
-        {state.categories.map((cat) => (
-          <CategoryButton
-            key={cat.name}
-            onClick={() => {
-              handleSelect(cat);
-            }}
-          >
-            {cat.name}
-          </CategoryButton>
-        ))}
+        {categories ? (
+          categories.map((cat) => (
+            <CategoryButton
+              key={cat.name}
+              onClick={() => {
+                router.push(
+                  "/category/[categoryName]",
+                  `/category/${cat.name}`
+                );
+              }}
+            >
+              {cat.name}
+            </CategoryButton>
+          ))
+        ) : (
+          <p>Il n'y a pas de catégories importées</p>
+        )}
       </ButtonsDiv>
     </>
   );

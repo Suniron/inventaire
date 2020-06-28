@@ -3,12 +3,11 @@ import { styled } from "styles";
 import { PageTitle } from "components/pageElements";
 import { Category } from "global";
 import SearchBar from "../SearchBar";
-import ItemElement from "../ItemElement";
 import Item from "objects/Item";
+import { useRouter } from "next/dist/client/router";
 
 interface ItemSelectorProps {
   category: Category;
-  handleBack: () => void;
 }
 
 const BackButton = styled.button((css) =>
@@ -36,11 +35,9 @@ const ItemArea = styled.div((css) =>
 
 const TdName = styled.td((css) => css.compose(css.text("left")));
 
-const ItemSelector: React.FC<ItemSelectorProps> = ({
-  category,
-  handleBack,
-}) => {
+const ItemSelector: React.FC<ItemSelectorProps> = ({ category }) => {
   const [items, setItems] = useState<Array<Item>>(category.items);
+  const router = useRouter();
 
   const handleSearch = (value: string) => {
     console.log(value);
@@ -48,7 +45,7 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({
 
   return (
     <>
-      <BackButton onClick={handleBack}>
+      <BackButton onClick={() => router.push("/")}>
         <ButtonTxt>Revenir aux catégories</ButtonTxt>
         <ButtonSvg src="/icons/back-arrow.svg" />
       </BackButton>
