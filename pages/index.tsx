@@ -14,7 +14,7 @@ const PageIndex: React.FC = () => {
       <button onClick={() => router.push("/import")}>
         Importer un nouveau modèle
       </button>
-      <Inventory />;
+      <Inventory />
     </>
   );
 };
