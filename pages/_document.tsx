@@ -9,26 +9,24 @@ export default class MyDocument extends Document {
     const css = createCss(config);
     const originalRenderPage = ctx.renderPage;
 
-    ctx.renderPage = () =>
-      originalRenderPage({
-        enhanceApp: (App) => (props) => <App {...props} serverCss={css} />,
-      });
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) => <App {...props} serverCss={css} />,
+        });
 
-    const initialProps = await Document.getInitialProps(ctx);
-    return {
-      ...initialProps,
-      styles: (
-        <>
-          {initialProps.styles}
-          {css.getStyles().map((css, index) => (
-            <style key={index}>
-              {css.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, "")}
-            </style>
-          ))}
-          {/* <style>{css.getStyles()}</style> */}
-        </>
-      ),
-    };
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            <style>{css.getStyles()}</style>
+          </>
+        ),
+      };
+    } finally {
+    }
   }
 
   render(): JSX.Element {

@@ -4,6 +4,7 @@ import { PageTitle } from "components/pageElements";
 import { useOvermind } from "store";
 import { useRouter } from "next/dist/client/router";
 import { Category } from "global";
+import { getCategoriesFromXlsx } from "utils/xlsx.utils";
 
 const ButtonsDiv = styled.div((css) => css.compose(/*css.py(8)*/));
 const CategoryButton = styled.button((css) =>
@@ -28,6 +29,10 @@ const CategorySelector: React.FC = () => {
     setCategories(state.categories);
   }, [setCategories, state.categories]);
 
+  const onImportDefault = () => {
+    //fetch("/files/defaultConfig.xlsx").then(async (res) => {});
+  };
+
   return (
     <>
       <PageTitle>Choisissez une catégorie</PageTitle>
@@ -47,7 +52,12 @@ const CategorySelector: React.FC = () => {
             </CategoryButton>
           ))
         ) : (
-          <p>Il n'y a pas de catégories importées</p>
+          <>
+            <p>Il n'y a pas de catégories importées</p>
+            {/* <button onClick={onImportDefault}>
+              Importer une configuration par défaut
+            </button> */}
+          </>
         )}
       </ButtonsDiv>
     </>
