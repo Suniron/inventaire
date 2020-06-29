@@ -9,6 +9,15 @@ import * as overmindStore from "store";
 import AppLayout from "components/AppLayout";
 import "../styles/base.min.scss";
 
+let clientCss;
+
+function getClientCss() {
+  if (!clientCss) {
+    clientCss = createCss(config);
+  }
+  return clientCss;
+}
+
 export default class MyApp extends App<{
   serverCss: TCss<typeof config>;
 }> {
@@ -46,7 +55,7 @@ export default class MyApp extends App<{
 
     return (
       <overmindReact.Provider value={this.overmind}>
-        <Provider css={serverCss || createCss(config)}>
+        <Provider css={serverCss || getClientCss()}>
           <Head>
             <title>Leclerc - Inventaire</title>
 
@@ -73,15 +82,3 @@ export default class MyApp extends App<{
     );
   }
 }
-
-// Only uncomment this method if you have blocking data requirements for
-// every single page in your application. This disables the ability to
-// perform automatic static optimization, causing every page in your app to
-// be server-side rendered.
-//
-// MyApp.getInitialProps = async (appContext) => {
-//   // calls page's `getInitialProps` and fills `appProps.pageProps`
-//   const appProps = await App.getInitialProps(appContext);
-//
-//   return { ...appProps }
-// }
