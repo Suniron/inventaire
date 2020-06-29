@@ -1,6 +1,7 @@
 import React from "react";
 import { useRouter } from "next/dist/client/router";
 import CategorySelector from "components/Inventory/CategorySelector";
+import { SimpleButton } from "components/Buttons";
 
 // TODO: Checker si appConfig est présent sinon demander d'importer les catégories / produits
 
@@ -11,9 +12,9 @@ const PageIndex: React.FC = () => {
   // -- RENDER --
   return (
     <>
-      <button onClick={() => router.push("/import")}>
+      <SimpleButton onClick={() => router.push("/import")}>
         Importer un nouveau modèle
-      </button>
+      </SimpleButton>
       <CategorySelector />
     </>
   );
