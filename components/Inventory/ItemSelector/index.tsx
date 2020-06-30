@@ -23,17 +23,27 @@ const BackButton = styled.button((css) =>
 const ButtonTxt = styled.p((css) => css.compose(css.px(2), css.text("white")));
 const ButtonSvg = styled.img((css) => css.compose(css.w(6)));
 
-const ItemArea = styled.div((css) =>
-  css.compose(
-    css.w("full"),
-    css.flex(),
-    css.flex("col"),
-    css.items("center"),
-    css.my(2)
-  )
+const ItemTable = styled.table((css) =>
+  css.compose(css.w("full"), css.tablet.w("2/3"), css.px(2))
 );
 
-const TdName = styled.td((css) => css.compose(css.text("left")));
+const Thead = styled.thead((css) =>
+  css.compose(css.bg("gray-900"), css.text("gray-200"))
+);
+
+const Tfoot = styled.tfoot((css) => css.compose(css.bg("gray-500")));
+
+const Tbody = styled.tbody((css) => css.compose(css.bg("gray-100")));
+
+const Tr = styled.tr((css) =>
+  css.compose(css.bg("gray-400", ":hover"), css.borderB(2))
+);
+
+const TdName = styled.td((css) => css.compose(css.text("left"), css.px(2)));
+
+const TdActions = styled.td((css) => css.compose());
+
+const ActionButton = styled.button((css) => css.compose(css.w(8), css.p("px")));
 
 const ItemSelector: React.FC<ItemSelectorProps> = ({ category }) => {
   const [items, setItems] = useState<Array<Item>>(category.items);
@@ -55,24 +65,28 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({ category }) => {
       </PageTitle>
 
       <SearchBar handleSearch={handleSearch} />
-      <table>
-        <thead>
+      <ItemTable>
+        <Thead>
           <tr>
             <th>Produit</th>
             <th>Quantité</th>
             <th>Actions</th>
           </tr>
-        </thead>
-        <tbody>
+        </Thead>
+        <Tbody>
           {items.map((item) => (
-            <tr key={item.name + item.genCodes[0]}>
+            <Tr key={item.name + item.genCodes[0]}>
               <TdName>{`${item.name} (${item.year})`}</TdName>
               <td>{item.quantity}</td>
-              <td>RIEN</td>
-            </tr>
+              <TdActions>
+                <ActionButton>
+                  <img src="/icons/plus.svg" />
+                </ActionButton>
+              </TdActions>
+            </Tr>
           ))}
-        </tbody>
-      </table>
+        </Tbody>
+      </ItemTable>
       {/* <ItemArea>
         {items.map((item) => (
           <ItemElement key={item.name} item={item} />
