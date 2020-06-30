@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Category } from "global";
 import CategoriesViewer from "components/CategoriesViewer";
-import { Title, Description } from "components/Text";
-import { SimpleButton } from "components/Buttons";
+import { Title, Description } from "components/models/Text";
+import { SimpleButton } from "components/models/Buttons";
 import { useOvermind } from "store";
 import { getCategoriesFromXlsx } from "utils/xlsx.utils";
 import { useRouter } from "next/dist/client/router";

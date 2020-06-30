@@ -1,7 +1,7 @@
 import React from "react";
 import { useRouter } from "next/dist/client/router";
 import CategorySelector from "components/Inventory/CategorySelector";
-import { SimpleButton } from "components/Buttons";
+import { SimpleButton } from "components/models/Buttons";
 
 // TODO: Checker si appConfig est présent sinon demander d'importer les catégories / produits
 

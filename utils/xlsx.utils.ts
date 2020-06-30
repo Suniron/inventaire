@@ -30,27 +30,27 @@ export const getCategoriesFromXlsx = (
     // traiter les resultats:
     //console.log(jsonSheet);
     const categories: Array<Category> = [];
-    let currentCatTitle = "";
+    let currentCatName = "";
     let currentCatItems: Array<Item> = [];
 
     jsonSheet.forEach((row, index) => {
       if (index === jsonSheet.length - 1) {
-        categories.push({ name: currentCatTitle, items: currentCatItems });
+        categories.push({ name: currentCatName, items: currentCatItems });
       } else {
         if (Object.keys(row).length === 1) {
           // Sauvegarder la catégorie précédente, si définie:
-          if (currentCatTitle !== "") {
+          if (currentCatName !== "") {
             categories.push({
-              name: currentCatTitle,
+              name: currentCatName,
               items: currentCatItems,
             });
 
             // Réinitialiser le titre et le contenu de la caétgorie:
-            currentCatTitle = row[Object.keys(row)[0]];
+            currentCatName = row[Object.keys(row)[0]];
             currentCatItems = [];
           }
 
-          currentCatTitle = row[Object.keys(row)[0]];
+          currentCatName = row[Object.keys(row)[0]];
         } else if (Object.keys(row).length > 1) {
           // récupèrer les != genCodes:
           const genCodesRow = row[Object.keys(row)[1]];
@@ -69,22 +69,23 @@ export const getCategoriesFromXlsx = (
           }
 
           if (genCodes) {
-            currentCatItems.push(
-              // TODO: Rechercher par nom de clé:
-              new Item(
-                row[Object.keys(row)[0]],
-                0,
-                Number(row[Object.keys(row)[2]]),
-                genCodes
-              )
+            // TODO: Rechercher par nom de clé:
+            const newItem = new Item(
+              row[Object.keys(row)[0]],
+              0,
+              Number(row[Object.keys(row)[2]]),
+              genCodes,
+              currentCatName
             );
+
+            currentCatItems.push(newItem);
           }
         } else {
           console.log("DEBUG ->", row);
         }
       }
     });
-    console.log("cat return", categories);
+
     // Définir les catégories récupérées:
     callback(categories);
   };

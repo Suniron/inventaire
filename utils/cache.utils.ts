@@ -1,26 +1,10 @@
 import { Category } from "global";
+import Item from "objects/Item";
 
 export const getCategoriesInCache = (): Array<Category> | null => {
   if (typeof window === "undefined") {
     return;
   }
-
-  // // === TEMP debut ==
-  // const config: AppConfig = {
-  //   inventory: {
-  //     categories: [],
-  //   },
-  // };
-
-  // fakeAppConfig.categories.forEach((cat) =>
-  //   config.inventory.categories.push({
-  //     name: cat.name,
-  //     items: cat.items.map((item) => new Item(item.name, item.qty)),
-  //   })
-  // );
-
-  // return config;
-  // // == TEMP fin ==
 
   const storedConfig = window.localStorage.getItem("categories");
 
@@ -29,7 +13,25 @@ export const getCategoriesInCache = (): Array<Category> | null => {
     return;
   }
 
-  return JSON.parse(storedConfig) as Array<Category>;
+  const categories: Array<Category> = [];
+  // Parse all cached datas and convert into class objects
+  (JSON.parse(storedConfig) as Array<any>).forEach((cat) =>
+    categories.push({
+      name: cat.name,
+      items: (cat.items as Array<any>).map(
+        (item: Item) =>
+          new Item(
+            item.name,
+            item.quantity,
+            item.year,
+            item.genCodes,
+            item.category
+          )
+      ),
+    })
+  );
+
+  return categories;
 };
 
 export const saveCategoriesInCache = (categories: Array<Category>): void => {

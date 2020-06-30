@@ -5,6 +5,7 @@ import { Category } from "global";
 import SearchBar from "../SearchBar";
 import Item from "objects/Item";
 import { useRouter } from "next/dist/client/router";
+import ActionButtons from "./ActionButtons";
 
 interface ItemSelectorProps {
   category: Category;
@@ -43,8 +44,6 @@ const TdName = styled.td((css) => css.compose(css.text("left"), css.px(2)));
 
 const TdActions = styled.td((css) => css.compose());
 
-const ActionButton = styled.button((css) => css.compose(css.w(8), css.p("px")));
-
 const ItemSelector: React.FC<ItemSelectorProps> = ({ category }) => {
   const [items, setItems] = useState<Array<Item>>(category.items);
   const router = useRouter();
@@ -79,9 +78,7 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({ category }) => {
               <TdName>{`${item.name} (${item.year})`}</TdName>
               <td>{item.quantity}</td>
               <TdActions>
-                <ActionButton>
-                  <img src="/icons/plus.svg" />
-                </ActionButton>
+                <ActionButtons item={item} />
               </TdActions>
             </Tr>
           ))}
