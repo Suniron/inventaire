@@ -25,9 +25,7 @@ class Item {
     if (typeof qtyToAdd !== "number") {
       return;
     }
-    console.log(typeof this.quantity);
     this.quantity += qtyToAdd;
-    console.log(this.quantity);
   }
   decreaseQuantity(qtyToAdd: number): void {
     if (typeof qtyToAdd !== "number") {
@@ -54,11 +52,6 @@ class Item {
     }
 
     items.forEach((item) => {
-      console.log(
-        item.name.includes(stringToSearch),
-        item.name,
-        stringToSearch
-      );
       if (
         item.name.toUpperCase().includes(stringToSearch.toUpperCase()) ||
         item.year.toString().includes(stringToSearch)
