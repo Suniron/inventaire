@@ -6,6 +6,16 @@ import { SimpleButton } from "components/models/Buttons";
 import { useOvermind } from "store";
 import { getCategoriesFromXlsx } from "utils/xlsx.utils";
 import { useRouter } from "next/dist/client/router";
+import { styled } from "styles";
+import { DangerAlert } from "components/models/Alerts";
+
+const DownloadFileInput = styled.input((css) =>
+  css.compose(css.w("full"), css.p(2))
+);
+
+const DownloadLink = styled.a((css) =>
+  css.compose(css.font("extrabold"), css.underline())
+);
 
 const ImportSystem: React.FC = () => {
   const [categories, setCategories] = useState<Array<Category>>();
@@ -41,10 +51,10 @@ const ImportSystem: React.FC = () => {
   return (
     <>
       <Title>Importation d'un modèle</Title>
-      <Description>
+      <DangerAlert>
         L'importation d'un nouveau modèle entrainera la suppression du modèle
         éxistant.
-      </Description>
+      </DangerAlert>
       {categories ? (
         <>
           <h3>{categories.length} catégories ont étés importées !</h3>
@@ -52,12 +62,21 @@ const ImportSystem: React.FC = () => {
           <CategoriesViewer categories={categories} />
         </>
       ) : (
-        <input
-          type="file"
-          id="xlsx-import"
-          accept=".xlsx"
-          onChange={onImportChange}
-        />
+        <>
+          <DownloadFileInput
+            type="file"
+            id="xlsx-import"
+            accept=".xlsx"
+            onChange={onImportChange}
+          />
+          <Description>
+            Pas de fichier? Cliquez{" "}
+            <DownloadLink download href="/files/defaultConfig.xlsx">
+              ICI
+            </DownloadLink>{" "}
+            pour obtenir une configuration par défaut
+          </Description>
+        </>
       )}
     </>
   );
