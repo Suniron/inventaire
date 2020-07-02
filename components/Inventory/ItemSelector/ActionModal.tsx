@@ -16,10 +16,10 @@ interface ItemActionProps {
 
 const IncreaseQuantity: React.FC<ItemActionProps> = ({ item }) => {
   const [qty, setQty] = useState<number>(0);
+  const { actions } = useOvermind();
 
   const handleSubmit = () => {
-    console.log(item);
-    //item.increaseQuantity(qty);
+    actions.increaseItemQuantity({ item: item, value: qty });
   };
 
   return (
@@ -35,10 +35,12 @@ const IncreaseQuantity: React.FC<ItemActionProps> = ({ item }) => {
 
 const DecreaseQuantity: React.FC<ItemActionProps> = ({ item }) => {
   const [qty, setQty] = useState(0);
+  const { actions } = useOvermind();
 
   const handleSubmit = () => {
-    item.decreaseQuantity(qty);
+    actions.decreaseItemQuantity({ item: item, value: qty });
   };
+
   return (
     <>
       <InputNumber
@@ -52,10 +54,12 @@ const DecreaseQuantity: React.FC<ItemActionProps> = ({ item }) => {
 
 const DefineQuantity: React.FC<ItemActionProps> = ({ item }) => {
   const [qty, setQty] = useState(0);
+  const { actions } = useOvermind();
 
   const handleSubmit = () => {
-    item.defineQuantity(qty);
+    actions.defineItemQuantity({ item: item, value: qty });
   };
+
   return (
     <>
       <InputNumber
