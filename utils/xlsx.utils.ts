@@ -1,6 +1,7 @@
 import XLSX from "xlsx";
 import { Category } from "global";
 import Item from "objects/Item";
+import { generateUniqueId } from "./uuid.utils";
 
 export const getCategoriesFromXlsx = (
   file: File,
@@ -71,6 +72,7 @@ export const getCategoriesFromXlsx = (
           if (genCodes) {
             // TODO: Rechercher par nom de clé:
             const newItem = new Item(
+              generateUniqueId(),
               row[Object.keys(row)[0]],
               0,
               Number(row[Object.keys(row)[2]]),

@@ -23,6 +23,7 @@
     "react-dom": "latest",
     "react-ga": "latest",
     "sass": "latest",
+    "uuid": "^8.2.0",
     "xlsx": "latest"
   },
   "devDependencies": {

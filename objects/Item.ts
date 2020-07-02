@@ -1,16 +1,19 @@
 class Item {
+  id: string;
   name: string;
   quantity: number;
   year: number;
   genCodes: Array<number>;
   category: string;
   constructor(
+    id: string,
     name: string,
     quantity: number,
     year: number,
     genCodes: Array<number>,
     category: string
   ) {
+    this.id = id;
     this.name = name;
     this.quantity = quantity;
     this.year = year;

@@ -1,5 +1,6 @@
 import { Category } from "global";
 import Item from "objects/Item";
+import { generateUniqueId } from "./uuid.utils";
 
 export const getCategoriesInCache = (): Array<Category> | null => {
   if (typeof window === "undefined") {
@@ -21,6 +22,7 @@ export const getCategoriesInCache = (): Array<Category> | null => {
       items: (cat.items as Array<any>).map(
         (item: Item) =>
           new Item(
+            generateUniqueId(), // Is a best way to use old (= precedent) id ?
             item.name,
             item.quantity,
             item.year,
