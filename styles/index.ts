@@ -8,7 +8,7 @@ import * as utils from "@stitches/tailwind/utils";
 // Treeshake by including only specific theme
 // import { colors, spacing } from "@stitches/tailwind/theme"
 import * as theme from "@stitches/tailwind/theme";
-import { createTokens } from "@stitches/css";
+import { createTokens, createCss } from "@stitches/css";
 
 const tokens = createTokens({
   colors: {
@@ -32,6 +32,8 @@ const config = createConfig({
   utils,
 });
 
+const css = createCss(config);
+
 const { Provider, useCss, styled } = createStyled<typeof config>();
 
-export { config, Provider, useCss, styled };
+export { css, config, Provider, useCss, styled };
