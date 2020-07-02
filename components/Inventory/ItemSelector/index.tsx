@@ -63,7 +63,10 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({ category }) => {
         {category.name} ({items.length} produits)
       </PageTitle>
 
-      <SearchBar handleSearch={handleSearch} />
+      <SearchBar
+        handleSearch={(items) => setItems(items)}
+        items={category.items}
+      />
       <ItemTable>
         <Thead>
           <tr>

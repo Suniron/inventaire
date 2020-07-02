@@ -21,7 +21,7 @@ class Item {
     this.category = category;
   }
 
-  increaseQuantity(qtyToAdd: number) {
+  increaseQuantity(qtyToAdd: number): void {
     if (typeof qtyToAdd !== "number") {
       return;
     }
@@ -29,17 +29,45 @@ class Item {
     this.quantity += qtyToAdd;
     console.log(this.quantity);
   }
-  decreaseQuantity(qtyToAdd: number) {
+  decreaseQuantity(qtyToAdd: number): void {
     if (typeof qtyToAdd !== "number") {
       return;
     }
     this.quantity -= qtyToAdd;
   }
-  defineQuantity(qtyToAdd: number) {
+  defineQuantity(qtyToAdd: number): void {
     if (typeof qtyToAdd !== "number") {
       return;
     }
     this.quantity = qtyToAdd;
   }
+
+  static findInListOfItems = (
+    items: Array<Item>,
+    stringToSearch: string
+  ): Array<Item> => {
+    const finded: Array<Item> = [];
+
+    // If empty search, return all:
+    if (stringToSearch === "") {
+      return items;
+    }
+
+    items.forEach((item) => {
+      console.log(
+        item.name.includes(stringToSearch),
+        item.name,
+        stringToSearch
+      );
+      if (
+        item.name.toUpperCase().includes(stringToSearch.toUpperCase()) ||
+        item.year.toString().includes(stringToSearch)
+      ) {
+        finded.push(item);
+      }
+    });
+
+    return finded;
+  };
 }
 export default Item;
