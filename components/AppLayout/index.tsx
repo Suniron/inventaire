@@ -26,7 +26,7 @@ const HeaderContainer = styled.header((css) =>
     css.h(12),
     css.items("center"),
     css.bg("blue-800"),
-    css.justify("center"),
+    // css.justify("center"),
     css.fixed(),
     css.top(0),
     css.left(0),
@@ -74,7 +74,7 @@ const AppLayout = ({ children, type }: AppLayoutProps): JSX.Element => {
   return (
     <AppContainer>
       {type === "footer" ? null : (
-        <HeaderContainer >
+        <HeaderContainer style={{ justifyContent: "space-between" }}>
           <Header />
         </HeaderContainer>
       )}
