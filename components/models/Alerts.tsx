@@ -1,23 +1,20 @@
-import { styled } from "styles";
+import { styled, config } from "styles";
+import { TUtilityFirstCss } from "@stitches/css";
 
-export const InfoAlert = styled.div((css) =>
-  css.compose(
+const defaultAlert = (css: TUtilityFirstCss<typeof config>) => {
+  return css.compose(
     css.border(2),
     css.rounded("md"),
     css.p(1),
     css.italic(),
-    css.text("sm"),
-    css.bg("green-200")
-  )
+    css.text("base")
+  );
+};
+
+export const InfoAlert = styled.div((css) =>
+  css.compose(defaultAlert(css), css.bg("green-200"))
 );
 
 export const DangerAlert = styled.div((css) =>
-  css.compose(
-    css.border(2),
-    css.rounded("md"),
-    css.p(1),
-    css.italic(),
-    css.text("sm"),
-    css.bg("red-400")
-  )
+  css.compose(defaultAlert(css), css.bg("red-400"))
 );
