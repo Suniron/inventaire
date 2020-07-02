@@ -3,6 +3,7 @@ import Item from "objects/Item";
 import Modal, { SectionDiv } from "components/models/Modal";
 import { InputNumber } from "components/models/Input";
 import { SimpleButton } from "components/models/Buttons";
+import { useOvermind } from "store";
 
 interface ActionModalProps {
   item: Item;
@@ -15,9 +16,10 @@ interface ItemActionProps {
 
 const IncreaseQuantity: React.FC<ItemActionProps> = ({ item }) => {
   const [qty, setQty] = useState<number>(0);
-  const test = new Item("ok", 2, 202, [], "");
+
   const handleSubmit = () => {
-    test.increaseQuantity(qty);
+    console.log(item);
+    //item.increaseQuantity(qty);
   };
 
   return (
