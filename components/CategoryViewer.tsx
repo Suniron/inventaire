@@ -27,7 +27,7 @@ const CategoryViewer: React.FC<CategoryViewerProps> = ({ category }) => {
       <CategorySubtitle>{category.items.length} produits</CategorySubtitle>
       <ItemsDiv>
         {category.items.map((item) => (
-          <ItemViewer key={item.genCodes[0] + item.name} item={item} />
+          <ItemViewer key={item.id} item={item} />
         ))}
       </ItemsDiv>
     </CategoryDiv>

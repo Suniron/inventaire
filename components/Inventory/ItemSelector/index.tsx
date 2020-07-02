@@ -74,7 +74,7 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({ category }) => {
         </Thead>
         <Tbody>
           {items.map((item) => (
-            <Tr key={item.name + item.genCodes[0]}>
+            <Tr key={item.id}>
               <TdName>{`${item.name} (${item.year})`}</TdName>
               <td>{item.quantity}</td>
               <TdActions>
@@ -86,7 +86,7 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({ category }) => {
       </ItemTable>
       {/* <ItemArea>
         {items.map((item) => (
-          <ItemElement key={item.name} item={item} />
+          <ItemElement key={item.id} item={item} />
         ))}
       </ItemArea> */}
     </>
