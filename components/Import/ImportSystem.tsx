@@ -10,7 +10,7 @@ import { styled } from "styles";
 import { DangerAlert } from "components/models/Alerts";
 
 const DownloadFileInput = styled.input((css) =>
-  css.compose(css.w("full"), css.p(2))
+  css.compose(css.p(2), css.maxW("full"))
 );
 
 const DownloadLink = styled.a((css) =>
