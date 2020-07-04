@@ -3,6 +3,8 @@ import { useRouter } from "next/dist/client/router";
 import ItemSelector from "components/Inventory/ItemSelector";
 import { useOvermind } from "store";
 import { Category } from "global";
+import { DangerAlert } from "components/models/Alerts";
+import { SimpleButton } from "components/models/Buttons";
 
 const CategoryNamePage: React.FC = () => {
   const [error, setError] = useState(false);
@@ -30,9 +32,14 @@ const CategoryNamePage: React.FC = () => {
   return (
     <>
       {error && (
-        <p>
-          Il y a une erreur avec la catégorie recherchée: elle n'existe pas.
-        </p>
+        <>
+          <DangerAlert>
+            Il y a une erreur avec la catégorie recherchée: elle n'existe pas.
+          </DangerAlert>
+          <SimpleButton onClick={() => router.push("/")}>
+            Retour à l'accueil
+          </SimpleButton>
+        </>
       )}
       {category && <ItemSelector category={category} />}
     </>

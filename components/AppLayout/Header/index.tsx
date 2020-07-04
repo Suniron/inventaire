@@ -4,7 +4,15 @@ import { useRouter } from "next/dist/client/router";
 import Settings from "./Settings";
 
 const HeaderTitle = styled.button((css) =>
-  css.compose(css.text("orange-500"), css.font("medium"), css.text("2xl"))
+  css.compose(
+    css.text("blue-600"),
+    css.font("bold"),
+    css.text("2xl"),
+    css.bg("white"),
+    css.border(2),
+    css.rounded("lg"),
+    css.px(1)
+  )
 );
 
 const Header: React.FC = () => {
@@ -12,7 +20,7 @@ const Header: React.FC = () => {
 
   return (
     <>
-      <div> </div>
+      <div></div>
       <HeaderTitle
         onClick={() => router.push("/")}
         title="Retourner à l'accueil"

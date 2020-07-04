@@ -33,7 +33,10 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({ categories }) => {
           <CategoryButton
             key={cat.name}
             onClick={() => {
-              router.push("/category/[categoryName]", `/category/${cat.name}`);
+              router.push(
+                "/inventory/[categoryName]",
+                `/inventory/${cat.name}`
+              );
             }}
           >
             {cat.name}

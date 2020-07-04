@@ -8,6 +8,7 @@ export const changePage = ({ state }, mutations) => {
 
   switch (state.page) {
     case "Index":
+      //console.log("Show index page !");
       // Do some additional logic
       break;
     case "About":

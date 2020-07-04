@@ -18,10 +18,11 @@ function getClientCss() {
   return clientCss;
 }
 
-export default class MyApp extends App<{
+class MyApp extends App<{
   serverCss: TCss<typeof config>;
 }> {
-  overmind = createOvermind(overmindStore.config);
+  overmind: any;
+  // overmind = createOvermind(overmindStore.config);
   // CLIENT: On initial route
   // SERVER: On initial route
   constructor(props) {
@@ -32,7 +33,7 @@ export default class MyApp extends App<{
     if (typeof window !== "undefined") {
       // On the client we just instantiate the Overmind instance and run
       // the "changePage" action
-
+      this.overmind = createOvermind(overmindStore.config);
       this.overmind.actions.changePage(mutations);
     } else {
       // On the server we rehydrate the mutations to an SSR instance of Overmind,
@@ -82,3 +83,5 @@ export default class MyApp extends App<{
     );
   }
 }
+
+export default MyApp;

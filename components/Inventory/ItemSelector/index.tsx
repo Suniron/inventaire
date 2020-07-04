@@ -48,13 +48,9 @@ const ItemSelector: React.FC<ItemSelectorProps> = ({ category }) => {
   const [items, setItems] = useState<Array<Item>>(category.items);
   const router = useRouter();
 
-  const handleSearch = (value: string) => {
-    console.log(value);
-  };
-
   return (
     <>
-      <BackButton onClick={() => router.push("/")}>
+      <BackButton onClick={() => router.push("/inventory")}>
         <ButtonTxt>Revenir aux catégories</ButtonTxt>
         <ButtonSvg src="/icons/back-arrow.svg" />
       </BackButton>
