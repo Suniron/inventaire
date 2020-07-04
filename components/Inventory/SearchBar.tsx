@@ -6,11 +6,15 @@ interface SearchBarProps {
   handleSearch: (items: Array<Item>) => void;
   items: Array<Item>;
 }
-const SearchBarDiv = styled.div((css) =>
-  css.compose(css.border(2), css.rounded("sm"))
-);
+
 const SearchInput = styled.input((css) =>
-  css.compose(css.text("center"), css.p(1), css.border(2), css.my(1))
+  css.compose(
+    css.text("center"),
+    css.p(1),
+    css.my(1),
+    css.border(2),
+    css.rounded("sm")
+  )
 );
 
 const SearchBar: React.FC<SearchBarProps> = ({ handleSearch, items }) => {
@@ -22,12 +26,10 @@ const SearchBar: React.FC<SearchBarProps> = ({ handleSearch, items }) => {
   };
 
   return (
-    <SearchBarDiv>
-      <SearchInput
-        onChange={handleInputChange}
-        placeholder="Filtrer par année ou nom"
-      />
-    </SearchBarDiv>
+    <SearchInput
+      onChange={handleInputChange}
+      placeholder="Filtrer par année ou nom"
+    />
   );
 };
 
