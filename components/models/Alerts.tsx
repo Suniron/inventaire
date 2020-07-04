@@ -5,7 +5,7 @@ const defaultAlert = (css: TUtilityFirstCss<typeof config>) => {
   return css.compose(
     css.border(2),
     css.rounded("md"),
-    css.p(1),
+    css.p(2),
     css.italic(),
     css.text("base")
   );
