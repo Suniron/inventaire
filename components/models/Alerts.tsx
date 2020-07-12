@@ -1,7 +1,6 @@
-import { styled, config } from "styles";
-import { TUtilityFirstCss } from "@stitches/css";
+import { styled } from "styles";
 
-const defaultAlert = (css: TUtilityFirstCss<typeof config>) => {
+const defaultAlert = (css) => {
   return css.compose(
     css.border(2),
     css.rounded("md"),

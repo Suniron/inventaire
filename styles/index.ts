@@ -1,37 +1,20 @@
 // css.ts
 import { createStyled } from "@stitches/styled";
 //import { createTokens, createCss } from "@stitches/css";
-import { createConfig } from "@stitches/tailwind";
+import { createTailwindCss } from "@stitches/tailwind";
 // Treeshake by including only specific utils
 // import { text, flex } from "@stitches/tailwind/utils"
 import * as utils from "@stitches/tailwind/utils";
 // Treeshake by including only specific theme
 // import { colors, spacing } from "@stitches/tailwind/theme"
 import * as theme from "@stitches/tailwind/theme";
-import { createTokens } from "@stitches/css";
-
-const tokens = createTokens({
-  colors: {
-    PRIMARY: "#1461b5",
-  },
-});
-
-const config = createConfig({
-  tokens,
+export const css = createTailwindCss({
   screens: {
-    tablet: (cssRule): string => `@media (min-width: 768px) { ${cssRule} }`,
-    laptop: (cssRule): string => `@media (min-width: 1024px) { ${cssRule} }`,
+    tablet: (cssRule) => `@media (min-width: 768px) { ${cssRule} }`,
+    laptop: (cssRule) => `@media (min-width: 1024px) { ${cssRule} }`,
   },
-  theme: {
-    ...theme,
-    flex: {
-      ...theme.flex,
-      col: "column", // To fix flex-direction: column
-    },
-  },
-  utils,
+  theme,
+  utils: utils,
 });
 
-const { Provider, useCss, styled } = createStyled<typeof config>();
-
-export { config, Provider, useCss, styled };
+export const styled = createStyled(css);

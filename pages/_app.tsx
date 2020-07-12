@@ -1,26 +1,13 @@
 import App from "next/app";
 import Head from "next/head";
 import React from "react";
-import { config, Provider } from "../styles";
-import { createCss, TCss } from "@stitches/css";
 import { createOvermind, createOvermindSSR, rehydrate } from "overmind";
 import * as overmindReact from "overmind-react";
 import * as overmindStore from "store";
 import AppLayout from "components/AppLayout";
 import "../styles/base.min.scss";
 
-let clientCss;
-
-function getClientCss() {
-  if (!clientCss) {
-    clientCss = createCss(config);
-  }
-  return clientCss;
-}
-
-class MyApp extends App<{
-  serverCss: TCss<typeof config>;
-}> {
+class MyApp extends App {
   overmind: any;
   // overmind = createOvermind(overmindStore.config);
   // CLIENT: On initial route
@@ -52,33 +39,31 @@ class MyApp extends App<{
   // SERVER: On initial route
 
   render(): JSX.Element {
-    const { Component, pageProps, serverCss } = this.props;
+    const { Component, pageProps } = this.props;
 
     return (
       <overmindReact.Provider value={this.overmind}>
-        <Provider css={serverCss || getClientCss()}>
-          <Head>
-            <title>Leclerc - Inventaire</title>
+        <Head>
+          <title>Leclerc - Inventaire</title>
 
-            {/* <link
+          {/* <link
               href="https://unpkg.com/tailwindcss/dist/base.min.css"
               rel="stylesheet"
               key="tailwindcss"
             /> */}
-            <link rel="icon" href="favicon.ico" />
-            <meta name="creator" content="Etienne BLANC" />
-            <meta charSet="utf-8" />
-            <meta
-              name="description"
-              content="Leclerc - Outil facilitant les opérations d'inventaire annuel"
-            />
-            <meta name="theme-color" content="FFFFFF" />
-          </Head>
+          <link rel="icon" href="favicon.ico" />
+          <meta name="creator" content="Etienne BLANC" />
+          <meta charSet="utf-8" />
+          <meta
+            name="description"
+            content="Leclerc - Outil facilitant les opérations d'inventaire annuel"
+          />
+          <meta name="theme-color" content="FFFFFF" />
+        </Head>
 
-          <AppLayout>
-            <Component {...pageProps} />
-          </AppLayout>
-        </Provider>
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
       </overmindReact.Provider>
     );
   }
