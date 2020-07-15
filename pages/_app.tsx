@@ -2,14 +2,13 @@ import App from "next/app";
 import Head from "next/head";
 import React from "react";
 import { createOvermind, createOvermindSSR, rehydrate } from "overmind";
-import * as overmindReact from "overmind-react";
+import { Provider } from "overmind-react";
 import * as overmindStore from "store";
-import AppLayout from "components/AppLayout";
+import AppLayout from "../components/AppLayout";
 import "../styles/base.min.scss";
 
 class MyApp extends App {
   overmind: any;
-  // overmind = createOvermind(overmindStore.config);
   // CLIENT: On initial route
   // SERVER: On initial route
   constructor(props) {
@@ -42,7 +41,7 @@ class MyApp extends App {
     const { Component, pageProps } = this.props;
 
     return (
-      <overmindReact.Provider value={this.overmind}>
+      <Provider value={this.overmind}>
         <Head>
           <title>Leclerc - Inventaire</title>
 
@@ -64,7 +63,7 @@ class MyApp extends App {
         <AppLayout>
           <Component {...pageProps} />
         </AppLayout>
-      </overmindReact.Provider>
+      </Provider>
     );
   }
 }
